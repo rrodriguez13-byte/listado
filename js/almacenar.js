@@ -16,24 +16,20 @@ function limpiarListado(){
     contenedor.innerHTML = "";
     localStorage.removeItem(keyAlmacenamientoItems);
 }
-function agregarItem(){
-    const textValue = document.getElementById(idInputField).value;
-    
-if (textValue.trim() !== "") {
-    const itemsGuardados = obtenerItems();
-    itemsGuardados.push(textValue);
-    localStorage.setItem(keyAlmacenamientoItems, JSON.stringify(itemsGuardados));
 
-    generarItem(textValue);
-}
-}
 // Agrega el nuevo item al contenedor del listado
-//function agregarItem(){
-  //  const itemsGuardados = obtenerItems();
- //   const textValue = document.getElementById(idInputField).value;
-  //  generarItem(textValue);
- //   localStorage.setItem(keyAlmacenamientoItems, itemsGuardados);
+function agregarItem(){
+    const inputField = document.getElementById(idInputField);
+    const textValue = inputField.value;
+    if (textValue.trim() !== "") {
+        const itemsGuardados = obtenerItems();
+        itemsGuardados.push(textValue);
+        localStorage.setItem(keyAlmacenamientoItems, JSON.stringify(itemsGuardados));
 
+        generarItem(textValue);
+    }
+    inputField.value = "";
+}
 
 
 
@@ -62,6 +58,3 @@ function generarItem(text){
     contenedorLista.appendChild(li);
 };
 
-// id boton: "agregar"
-// id del campo de texto: "item"
-// id boton limpiar: "limpiar"
